@@ -14,7 +14,7 @@ struct EmptyStateView: View {
                 .font(.system(size: 64))
                 .foregroundColor(.gray)
                 .padding(.bottom, 16)
-            Text("No characters found")
+            Text(NSLocalizedString("no_characters_found", comment: "no_characters_found"))
                 .font(.title3)
                 .foregroundColor(.gray)
         }

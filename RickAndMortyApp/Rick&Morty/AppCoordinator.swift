@@ -17,13 +17,13 @@ struct MainTabView: View {
         TabView(selection: $coordinator.selectedTab) {
             CharactersTab()
                 .tabItem {
-                    Label("Characters", systemImage: "person.3")
+                    Label(NSLocalizedString("characters", comment: "Characters list title"), systemImage: "person.3")
                 }
                 .tag(Tab.characters)
 
             EpisodesTab()
                 .tabItem {
-                    Label("Episodes", systemImage: "tv")
+                    Label("episodes", systemImage: "tv")
                 }
                 .tag(Tab.episodes)
         }

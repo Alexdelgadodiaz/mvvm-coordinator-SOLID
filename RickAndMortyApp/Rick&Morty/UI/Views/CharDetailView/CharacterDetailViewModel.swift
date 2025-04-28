@@ -37,10 +37,10 @@ final class CharacterDetailViewModel: ObservableObject {
                 return id0 < id1
             }
             if episodes.isEmpty {
-                errorMessage = "No episodes found for this character"
+                errorMessage = NSLocalizedString("no_episodes_for_character", comment: "")
             }
         } catch {
-            errorMessage = "Error loading episodes: \(error.localizedDescription)"
+            errorMessage = String(format: NSLocalizedString("error_loading_episodes", comment: ""), error.localizedDescription)
             episodes = []
         }
 

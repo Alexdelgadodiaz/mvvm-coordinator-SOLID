@@ -8,6 +8,7 @@
 
 import SwiftUI
 import RickMortyModels
+import RickMortyShared
 
 struct EpisodesListView: View {
     @StateObject var viewModel: EpisodesListViewModel
@@ -15,7 +16,7 @@ struct EpisodesListView: View {
 
     var body: some View {
         EpisodeListContent(viewModel: viewModel)
-            .navigationTitle("Episodes")
+            .navigationTitle("episodes")
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .automatic))
             .onChange(of: viewModel.searchQuery, initial: false) { _, newValue in
@@ -134,7 +135,7 @@ struct EpisodeRow: View {
                 .font(.headline)
 
             HStack {
-                Text("Emitido: \(episode.air_date)")
+                Text(String(format: NSLocalizedString("aired", comment: ""), localizedDate(from: episode.air_date)))
                     .font(.subheadline)
 
                 Spacer()

@@ -15,7 +15,7 @@ struct CharactersListView: View {
 
     var body: some View {
         CharacterListContent(viewModel: viewModel, isGridView: isGridView)
-            .navigationTitle("Characters")
+            .navigationTitle(NSLocalizedString("characters", comment: "Characters list title"))
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .automatic))
             .onChange(of: viewModel.searchQuery, initial: false) { oldValue, newValue in                restartFetchTask {

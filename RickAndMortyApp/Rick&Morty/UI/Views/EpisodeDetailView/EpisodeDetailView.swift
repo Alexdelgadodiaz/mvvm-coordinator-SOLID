@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RickMortyModels
+import RickMortyShared
 
 struct EpisodeDetailView: View {
     @StateObject var viewModel: EpisodeDetailViewModel
@@ -32,11 +33,11 @@ struct EpisodeDetailView: View {
     private var episodeHeader: some View {
         VStack(alignment: .leading, spacing: 8) {
 
-            Text("Emitido el \(viewModel.episode.air_date)")
+            Text(String(format: NSLocalizedString("aired_on", comment: ""), localizedDate(from: viewModel.episode.air_date)))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
-            Text("Código: \(viewModel.episode.episode)")
+            Text(String(format: NSLocalizedString("episode_code", comment: ""), viewModel.episode.episode))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
@@ -46,7 +47,7 @@ struct EpisodeDetailView: View {
 
     private var characterListSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Personajes")
+            Text("characters_title")
                 .font(.headline)
                 .foregroundColor(.primary)
 
@@ -58,7 +59,7 @@ struct EpisodeDetailView: View {
                     .foregroundColor(.red)
                     .frame(maxWidth: .infinity)
             } else if viewModel.characters.isEmpty {
-                Text("No hay personajes disponibles.")
+                Text("no_characters_available")
                     .foregroundColor(.gray)
             } else {
                 LazyVGrid(

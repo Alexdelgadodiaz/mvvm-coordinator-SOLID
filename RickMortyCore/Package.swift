@@ -73,7 +73,7 @@ let package = Package(
         .target(
             name: "RickMortyShared",
             path: "Sources/Shared",
-            sources: ["Error", "Extensions", "Logger"]
+            sources: ["Error", "Extensions", "Logger", "localized"]
         )
     ]
 )

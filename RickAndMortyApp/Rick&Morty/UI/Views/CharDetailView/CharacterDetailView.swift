@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import RickMortyModels
+import RickMortyShared
 
 
 struct CharacterDetailView: View {
@@ -70,16 +71,16 @@ struct CharacterInfoView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            InfoRow(label: "Status", value: character.status, icon: "heart.fill")
-            InfoRow(label: "Species", value: character.species, icon: "pawprint.fill")
-            InfoRow(label: "Gender", value: character.gender, icon: "person.fill")
+            InfoRow(label: "status", value: character.status, icon: "heart.fill")
+            InfoRow(label: "species", value: character.species, icon: "pawprint.fill")
+            InfoRow(label: "gender", value: character.gender, icon: "person.fill")
 
             if let origin = character.origin?.name {
-                InfoRow(label: "Origin", value: origin, icon: "globe")
+                InfoRow(label: "origin", value: origin, icon: "globe")
             }
 
             if let location = character.location?.name {
-                InfoRow(label: "Location", value: location, icon: "mappin.and.ellipse")
+                InfoRow(label: "location", value: location, icon: "mappin.and.ellipse")
             }
         }
         .padding()
@@ -95,7 +96,7 @@ struct InfoRow: View {
     
     var body: some View {
         HStack {
-            Label(label, systemImage: icon)
+            Label(LocalizedStringKey(label), systemImage: icon)
                 .foregroundColor(.secondary)
                 .frame(width: 100, alignment: .leading)
             Text(value)
@@ -113,7 +114,7 @@ struct EpisodesListInCharView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Appears In")
+            Text(LocalizedStringKey("appears_in"))
                 .font(.title2.bold())
                 .padding(.top)
 
@@ -123,7 +124,7 @@ struct EpisodesListInCharView: View {
             } else if let error = errorMessage {
                 ErrorView(error: error)
             } else if episodes.isEmpty {
-                Text("No episodes found")
+                Text(LocalizedStringKey("no_episodes_found"))
                     .foregroundColor(.secondary)
             } else {
                 LazyVStack(spacing: 10) {
@@ -152,7 +153,7 @@ struct EpisodeInCharRow: View {
                     .font(.body)
                     .foregroundColor(.primary)
 
-                Text("\(episode.episode) • \(episode.air_date)")
+                Text("\(episode.episode) • \(localizedDate(from: episode.air_date))")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
