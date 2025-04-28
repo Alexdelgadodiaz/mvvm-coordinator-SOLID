@@ -1,0 +1,38 @@
+# SwiftLint Configuration for Rick&Morty Project
+
+disabled_rules:
+  - line_length              # Permitimos líneas largas por claridad (puedes habilitarlo si quieres máximo 120)
+  - identifier_name          # Permitimos nombres cortos en variables temporales (por ejemplo, i, j, k)
+
+opt_in_rules:
+  - force_cast               # No queremos usar `as!` nunca
+  - force_try                # Evitar `try!`
+  - force_unwrapping         # Evitar `!` en optionals
+
+included:
+  - Rick&Morty                # Carpeta principal del proyecto
+
+excluded:
+  - Pods                      # Ignorar dependencias de terceros
+
+reporter: xcode               # Formato bonito en consola de Xcode
+
+# Reglas personalizadas
+trailing_whitespace:
+  severity: warning
+
+type_body_length:
+  warning: 300
+  error: 500
+
+file_length:
+  warning: 400
+  error: 600
+
+function_body_length:
+  warning: 40
+  error: 100
+
+nesting:
+  type_level: 2
+  function_level: 2
