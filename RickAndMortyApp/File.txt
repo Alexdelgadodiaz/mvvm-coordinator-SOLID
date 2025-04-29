@@ -1,8 +1,0 @@
-Step-by-step process:
-
-Create an Xcode workspace and iOS app project.
-Add the Swift packages and iOS app to that workspace.
-Create a test plan file (.xctestplan) by going to File > New > File... and select 'Test Plan'.
-In that test plan, add the Swift package tests (and any other tests) you'd like to execute.
-In the test section of the iOS app's scheme, add the existing test plan you created.
-Create an Xcode Cloud workflow as usual, targeting the test plan when adding the test action.
