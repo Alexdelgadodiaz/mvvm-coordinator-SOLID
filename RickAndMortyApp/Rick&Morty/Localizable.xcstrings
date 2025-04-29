@@ -138,6 +138,12 @@
             "state" : "translated",
             "value" : "Error loading episodes"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error cargando episodios"
+          }
         }
       }
     },
@@ -209,6 +215,40 @@
         }
       }
     },
+    "no_connection_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please, check you are on a wifi and try again"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por favor, verifica que estás en una wifi y vuelve a intentarlo"
+          }
+        }
+      }
+    },
+    "no_connection_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet detected"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay conexión a internet"
+          }
+        }
+      }
+    },
     "no_episodes_for_character" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -216,6 +256,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No episodes for character"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin episodios para este personaje"
           }
         }
       }
