@@ -12,28 +12,11 @@ let package = Package(
     products: [
         .library(
             name: "RickMortyCore",
-            targets: ["RickMortyCore"]),
-        .library(
-            name: "RickMortyAPI",
-            targets: ["RickMortyAPI"]),
-        .library(
-            name: "RickMortyDomain",
-            targets: ["RickMortyDomain"])
+            targets: ["RickMortyAPI", "RickMortyDomain", "RickMortyModels", "RickMortyShared"])
 
         
     ],
     targets: [
-        // Target principal que agrupa todo
-        .target(
-            name: "RickMortyCore",
-            dependencies: [
-                "RickMortyAPI",
-                "RickMortyDomain",
-                "RickMortyModels",
-                "RickMortyShared"
-            ],
-            path: "Sources/Core"
-        ),
         
         // Capa de API/Network
         .target(

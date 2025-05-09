@@ -10,8 +10,6 @@
 		D13B24302DBEF15A0004797C /* RickMortyCore in Frameworks */ = {isa = PBXBuildFile; productRef = D13B242F2DBEF15A0004797C /* RickMortyCore */; };
 		D1A822E82DBECE1F00FA67EF /* RickMortyCore in Frameworks */ = {isa = PBXBuildFile; productRef = D1A822E72DBECE1F00FA67EF /* RickMortyCore */; };
 		D1B789782DBEC96F00C2AE8E /* RickMortyCore in Frameworks */ = {isa = PBXBuildFile; productRef = D1B789772DBEC96F00C2AE8E /* RickMortyCore */; };
-		D1BD0AD22DBEF9B900FB2FEF /* RickMortyCore in Frameworks */ = {isa = PBXBuildFile; productRef = D1BD0AD12DBEF9B900FB2FEF /* RickMortyCore */; };
-		D1E2E38B2DBECD2C006F379D /* RickMortyCore in Frameworks */ = {isa = PBXBuildFile; productRef = D1E2E38A2DBECD2C006F379D /* RickMortyCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1BD0AD22DBEF9B900FB2FEF /* RickMortyCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1E2E38B2DBECD2C006F379D /* RickMortyCore in Frameworks */,
 				D1B789782DBEC96F00C2AE8E /* RickMortyCore in Frameworks */,
 				D13B24302DBEF15A0004797C /* RickMortyCore in Frameworks */,
 				D1A822E82DBECE1F00FA67EF /* RickMortyCore in Frameworks */,
@@ -128,7 +124,6 @@
 			);
 			name = "Rick&MortyTests";
 			packageProductDependencies = (
-				D1BD0AD12DBEF9B900FB2FEF /* RickMortyCore */,
 			);
 			productName = "Rick&MortyTests";
 			productReference = D162B1D82DBA7C8100E96CD1 /* Rick&MortyTests.xctest */;
@@ -152,7 +147,6 @@
 			name = "Rick&Morty";
 			packageProductDependencies = (
 				D1B789772DBEC96F00C2AE8E /* RickMortyCore */,
-				D1E2E38A2DBECD2C006F379D /* RickMortyCore */,
 				D1A822E72DBECE1F00FA67EF /* RickMortyCore */,
 				D13B242F2DBEF15A0004797C /* RickMortyCore */,
 			);
@@ -190,7 +184,7 @@
 			mainGroup = D18BBCCD2DBA461600C4FEB6;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D15DB80E2DBEF46F006C344D /* XCLocalSwiftPackageReference "../RickMortyCore" */,
+				D108666F2DCE29A60098B802 /* XCLocalSwiftPackageReference "../RickMortyCore" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D18BBCD72DBA461700C4FEB6 /* Products */;
@@ -514,7 +508,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		D15DB80E2DBEF46F006C344D /* XCLocalSwiftPackageReference "../RickMortyCore" */ = {
+		D108666F2DCE29A60098B802 /* XCLocalSwiftPackageReference "../RickMortyCore" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../RickMortyCore;
 		};
@@ -530,15 +524,6 @@
 			productName = RickMortyCore;
 		};
 		D1B789772DBEC96F00C2AE8E /* RickMortyCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RickMortyCore;
-		};
-		D1BD0AD12DBEF9B900FB2FEF /* RickMortyCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D15DB80E2DBEF46F006C344D /* XCLocalSwiftPackageReference "../RickMortyCore" */;
-			productName = RickMortyCore;
-		};
-		D1E2E38A2DBECD2C006F379D /* RickMortyCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RickMortyCore;
 		};
