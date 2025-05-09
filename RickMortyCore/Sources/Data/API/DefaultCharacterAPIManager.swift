@@ -72,22 +72,36 @@ public final class DefaultCharacterAPIManager: CharacterAPIManagerProtocol {
 
     private func fetchMultipleItems<T: Sendable & Decodable>(from urls: [String]) async throws -> [T] {
         var items: [T] = []
+        var failedURLs: [URL] = []
+        var errors: [Error] = []
         
-        for url in urls {
-            guard let url = URL(string: url) else {
-                logger.logError("Invalid URL: \(url)")
+        for urlString in urls {
+            guard let url = URL(string: urlString) else {
+                let error = FetchError.invalidURL(urlString)
+                logger.logError("Invalid URL: \(urlString)")
+                errors.append(error)
                 continue
             }
-
-            let request = makeRequest(url: url)
-            let (data, _) = try await urlSession.data(for: request)
-
+              
             do {
+                let request = makeRequest(url: url)
+                let (data, response) = try await urlSession.data(for: request)
+                  
+                try validate(response: response)
+                  
                 let item = try decoder.decode(T.self, from: data)
                 items.append(item)
             } catch {
-                logger.logError("Failed to decode item from \(url): \(error)")
+                logger.logError("Failed with \(url): \(error)")
+                failedURLs.append(url)
+                errors.append(error)
             }
+        }
+        
+        if !errors.isEmpty && items.isEmpty {
+            throw errors.first! // Si todas fallaron, lanzar el primer error
+        } else if !errors.isEmpty {
+            logger.logWarning("Partial fetch success: \(items.count)/\(urls.count) items fetched")
         }
 
         return items
@@ -131,5 +145,10 @@ public final class DefaultCharacterAPIManager: CharacterAPIManagerProtocol {
         case 500..<600: throw APIError.serverError(httpResponse.statusCode)
         default: throw APIError.unexpectedStatusCode(httpResponse.statusCode)
         }
+    }
+    
+    enum FetchError: Error {
+        case partialFetch([URL], [Error])
+        case invalidURL(String)
     }
 }

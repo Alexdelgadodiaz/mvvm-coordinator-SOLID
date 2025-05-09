@@ -7,6 +7,7 @@
 
 
 public struct DefaultLogger: LoggerProtocol {
+    
     public init(){}
     
     public func logInfo(_ message: String) {
@@ -15,5 +16,10 @@ public struct DefaultLogger: LoggerProtocol {
 
     public func logError(_ message: String) {
         print("❌ [ERROR]: \(message)")
+    }
+    
+    public func logWarning(_ message: String) {
+        print("‼️ [WARNING]: \(message)")
+
     }
 }

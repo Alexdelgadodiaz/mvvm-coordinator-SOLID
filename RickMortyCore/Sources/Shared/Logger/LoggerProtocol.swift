@@ -9,4 +9,5 @@
 public protocol LoggerProtocol {
     func logInfo(_ message: String)
     func logError(_ message: String)
+    func logWarning(_ message: String)
 }
