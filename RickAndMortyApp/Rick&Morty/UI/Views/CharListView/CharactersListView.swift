@@ -140,10 +140,8 @@ struct CharacterRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            CachedAsyncImage(url: URL(string: character.image)!) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
+            CachedAsyncImage(urlString: character.image) { image in
+                image.resizable().scaledToFill()
             }
             .frame(width: 50, height: 50)
             .cornerRadius(12)
@@ -168,10 +166,8 @@ struct CharacterGridItem: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            CachedAsyncImage(url: URL(string: character.image)!) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
+            CachedAsyncImage(urlString: character.image) { image in
+                image.resizable().scaledToFill()
             }
             .frame(width: 100, height: 100)
             .cornerRadius(12)

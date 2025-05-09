@@ -47,10 +47,9 @@ struct CharacterHeaderView: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            CachedAsyncImage(url: URL(string: character.image)!) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
+            
+            CachedAsyncImage(urlString: character.image) { image in
+                image.resizable().scaledToFill()
             }
             .frame(width: 200, height: 200)
             .clipShape(RoundedRectangle(cornerRadius: 20))

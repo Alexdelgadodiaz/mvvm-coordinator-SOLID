@@ -9,9 +9,14 @@
 import SwiftUI
 
 struct CachedAsyncImage<Content: View>: View {
-    let url: URL
+    let urlString: String
     @ViewBuilder var content: (Image) -> Content
     @State private var image: UIImage?
+    
+    init(urlString: String, @ViewBuilder content: @escaping (Image) -> Content) {
+        self.urlString = urlString
+        self.content = content
+    }
 
     var body: some View {
         Group {
@@ -26,6 +31,12 @@ struct CachedAsyncImage<Content: View>: View {
 
     @MainActor
     private func loadImage() async {
+        
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL: \(urlString)")
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.cachePolicy = .returnCacheDataElseLoad
 

@@ -84,10 +84,8 @@ struct CharacterCard: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            CachedAsyncImage(url: URL(string: character.image)!) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
+            CachedAsyncImage(urlString: character.image) { image in
+                image.resizable().scaledToFill()
             }
             .frame(width: 80, height: 80)
             .cornerRadius(12)
