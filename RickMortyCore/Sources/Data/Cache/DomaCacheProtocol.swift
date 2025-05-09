@@ -7,7 +7,7 @@
 
 import Foundation
 
-package protocol DomaCacheProtocol {
+public protocol DomaCacheProtocol {
     func save<T: Codable>(_ object: T, forKey key: String, expiration: TimeInterval) async throws
     func load<T: Codable>(_ type: T.Type, forKey key: String) async throws -> T?
     func remove(forKey key: String) async
@@ -30,7 +30,7 @@ public final class DomaCache: DomaCacheProtocol {
         }
     }
 
-    package func save<T: Codable>(_ object: T, forKey key: String, expiration: TimeInterval) async throws {
+    public func save<T: Codable>(_ object: T, forKey key: String, expiration: TimeInterval) async throws {
         let encoder = JSONEncoder()
         let data = try encoder.encode(object)
         let cacheEntry = CacheEntry(value: data, expiration: expiration)
@@ -40,7 +40,7 @@ public final class DomaCache: DomaCacheProtocol {
         try await saveToDisk(entry: cacheEntry, at: url)
     }
 
-    package func load<T: Codable>(_ type: T.Type, forKey key: String) async throws -> T? {
+    public func load<T: Codable>(_ type: T.Type, forKey key: String) async throws -> T? {
         if let entry = memoryCache.object(forKey: key as NSString), !entry.isExpired {
             let decoder = JSONDecoder()
             return try decoder.decode(T.self, from: entry.value)
@@ -56,13 +56,13 @@ public final class DomaCache: DomaCacheProtocol {
         return try decoder.decode(T.self, from: entry.value)
     }
 
-    package func remove(forKey key: String) async {
+    public func remove(forKey key: String) async {
         memoryCache.removeObject(forKey: key as NSString)
         let url = fileURL(forKey: key)
         try? fileManager.removeItem(at: url)
     }
 
-    package func clear() async {
+    public func clear() async {
         memoryCache.removeAllObjects()
         try? fileManager.removeItem(at: directoryURL)
         try? fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)

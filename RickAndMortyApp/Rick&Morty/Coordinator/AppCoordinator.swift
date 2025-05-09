@@ -41,39 +41,34 @@ final class AppCoordinator: ObservableObject {
     @Published private(set) var charactersListViewModel: CharactersListViewModel
     @Published private(set) var episodesListViewModel: EpisodesListViewModel
 
-    private let apiManager: CharacterAPIManagerProtocol
-    private let domeCache: DomaCache
-
-    init() {
-        self.apiManager = DefaultCharacterAPIManager()
-        self.domeCache = DomaCache()
-        let characterRepository = DefaultCharacterRepository(apiManager: apiManager, domaCache: domeCache)
-        let episodeRepository = DefaultEpisodeRepository(apiManager: apiManager, domaCache: domeCache)
-
+    private let container: DependencyContainerProtocol
+      
+    init(container: DependencyContainerProtocol = DependencyContainer()) {
+        
+        self.container = container
+          
         self.charactersListViewModel = CharactersListViewModel(
-            characterUseCase: DefaultCharacterUseCase(repository: characterRepository)
+            characterUseCase: container.characterUseCase
         )
         self.episodesListViewModel = EpisodesListViewModel(
-            episodeUseCase: DefaultEpisodeUseCase(repository: episodeRepository)
+            episodeUseCase: container.episodeUseCase
         )
     }
-
+    
     // Los ViewModel detail siguen como factories dinámicas
     func makeCharacterDetailViewModel(for character: CharacterModel) -> CharacterDetailViewModel {
-        let characterRepository = DefaultCharacterRepository(apiManager: apiManager, domaCache: domeCache)
-
+        
         return CharacterDetailViewModel(
             character: character,
-            characterUseCase: DefaultCharacterUseCase(repository: characterRepository)
+            characterUseCase: self.container.characterUseCase
         )
     }
 
     func makeEpisodeDetailViewModel(for episode: EpisodeModel) -> EpisodeDetailViewModel {
-        let episodeRepository = DefaultEpisodeRepository(apiManager: apiManager, domaCache: domeCache)
 
         return EpisodeDetailViewModel(
             episode: episode,
-            episodeUseCase: DefaultEpisodeUseCase(repository: episodeRepository)
+            episodeUseCase: self.container.episodeUseCase
         )
     }
 }

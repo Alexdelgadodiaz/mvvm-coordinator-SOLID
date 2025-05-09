@@ -7,15 +7,19 @@
 
 
 import SwiftUI
+import RickMortyShared
+
 
 struct CachedAsyncImage<Content: View>: View {
     let urlString: String
     @ViewBuilder var content: (Image) -> Content
     @State private var image: UIImage?
+    private let logger: LoggerProtocol
     
-    init(urlString: String, @ViewBuilder content: @escaping (Image) -> Content) {
+    init(urlString: String, logger: LoggerProtocol = DefaultLogger(),   @ViewBuilder content: @escaping (Image) -> Content) {
         self.urlString = urlString
         self.content = content
+        self.logger = logger
     }
 
     var body: some View {
@@ -33,7 +37,7 @@ struct CachedAsyncImage<Content: View>: View {
     private func loadImage() async {
         
         guard let url = URL(string: urlString) else {
-            print("Invalid URL: \(urlString)")
+            logger.logInfo("Invalid URL: \(urlString)")
             return
         }
         
@@ -47,7 +51,7 @@ struct CachedAsyncImage<Content: View>: View {
             return
         }
 
-        print("🔴 [RED] Fetching image \(url.lastPathComponent)")
+        logger.logInfo("[NETWORK] Fetching image \(url.lastPathComponent)")
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let image = UIImage(data: data) else { return }
@@ -57,7 +61,7 @@ struct CachedAsyncImage<Content: View>: View {
 
             self.image = image
         } catch {
-            print("Error loading image: \(error.localizedDescription)")
+            logger.logError("Error loading image: \(error.localizedDescription)")
         }
     }
 }

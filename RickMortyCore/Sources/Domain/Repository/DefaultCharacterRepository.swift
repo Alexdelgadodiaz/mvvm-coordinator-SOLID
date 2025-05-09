@@ -15,9 +15,9 @@ public final class DefaultCharacterRepository: CharacterRepositoryProtocol {
     private let memoryCache = NSCache<NSString, CacheEntry<PaginatedCharacters>>()
     private let memoryCacheEpisodes = NSCache<NSString, CacheEntry<[EpisodeModel]>>()
     private let cacheLifetime: TimeInterval = 300 // 5 minutos
-    private let domaCache : DomaCache
+    private let domaCache : DomaCacheProtocol
 
-    public init(apiManager: CharacterAPIManagerProtocol, domaCache: DomaCache) {
+    public init(apiManager: CharacterAPIManagerProtocol, domaCache: DomaCacheProtocol) {
         self.apiManager = apiManager
         self.domaCache = domaCache // Inyección de dependencia
     }

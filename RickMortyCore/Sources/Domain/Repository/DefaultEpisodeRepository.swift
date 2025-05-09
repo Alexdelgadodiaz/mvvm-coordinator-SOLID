@@ -12,9 +12,9 @@ public final class DefaultEpisodeRepository: EpisodeRepositoryProtocol {
     private let apiManager: CharacterAPIManagerProtocol
     private let memoryCache = NSCache<NSString, CacheEntry<PaginatedEpisodes>>()
     private let cacheLifetime: TimeInterval = 300 // 5 minutos
-    private let domaCache : DomaCache
+    private let domaCache : DomaCacheProtocol
 
-    public init(apiManager: CharacterAPIManagerProtocol, domaCache: DomaCache) {
+    public init(apiManager: CharacterAPIManagerProtocol, domaCache: DomaCacheProtocol) {
         self.apiManager = apiManager
         self.domaCache = domaCache // Inyección de dependencia
     }
